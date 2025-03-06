@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problemas de maquininhas - SumUp</title>
+    <link rel="stylesheet" href="src/styles/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        header button {
+            margin: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        header button:hover {
+            background-color: #444;
+        }
+        
+        main {
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 80px; /* Account for fixed footer */
+        }
+        
+        section {
+            margin-bottom: 2rem;
+        }
+        
+        .card-reader {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .card-reader img {
+            max-width: 150px;
+            margin-right: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        
+        .widget-container {
+            position: fixed;
+            bottom: 70px;
+            z-index: 1000;
+        }
+        
+        .chat-widget {
+            left: 1.25rem;
+        }
+        
+        .voice-widget {
+            right: 1.25rem;
+        }
+        
+        #chatwindow,
+        #ura {
+            max-width: 100%;
+            width: 400px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.5rem;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .card-reader {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .card-reader img {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            iframe {
+                height: 400px;
+            }
+            
+            .widget-container {
+                position: static;
+                margin: 1rem 0;
+            }
+            
+            #chatwindow,
+            #ura {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Problemas de maquininha - SumUp</h1>
+        <p>Este é um site criado somente para resolver problemas de maquininha. 
+        Visite nosso site oficial em <a href="https://www.sumup.com" target="_blank">SumUp</a>.</p>
+        <button onclick="showClientsView()">Sou Cliente</button>
+        <button onclick="showExecutivesView()">Sou Executivo de vendas</button>
+        
+    </header>
+    
+    <main id="main-content">
+    
+        
+        <div class="widget-container voice-widget">
+            <section id="ura" style="display: none;">
+                <elevenlabs-convai agent-id="u5tnpbTlXZojA9WMHssY"></elevenlabs-convai>
+                <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+            </section>
+        </div>
+
+        <section id="chat-executive">
+            <div style="text-align: center; margin-bottom: 1rem; padding: 1rem; border-radius: 8px;">
+                <h2 style="margin: 0; padding: 0.5rem; background-color: black; color:white; border-radius: 4px;">Bem-vindo ao Chat do Executivo</h2>
+                <p>Estamos aqui para ajudar você com qualquer dúvida ou problema que possa ter.</p>
+            </div>
+            <iframe 
+                src="https://flowise-67b6529d1d60a9d47b78a576.caprover-root.startse.com/chatbot/5147674d-21d0-4c11-840f-54c130a13233"
+                width="100%" 
+                height="600px" 
+                frameborder="0" 
+                allowfullscreen>
+            </iframe>
+        </section>
+        <section id="chat-merchant">
+            <div style="text-align: center; margin-bottom: 1rem; padding: 1rem; border-radius: 8px;">
+                <h2 style="margin: 0; padding: 0.5rem; background-color: black; color:white; border-radius: 4px;">Bem-vindo ao Chat do Cliente</h2>
+                <p>Se preferir falar por voz, basta clicar no botão no canto inferior direito da página.</p>
+            </div>
+            <iframe 
+                src="https://flowise-67b71fda7a45039042bd5dae.caprover-root.startse.com/chatbot/f8676ac6-c912-4fb5-9205-ad524ae1e334"
+                width="100%" 
+                height="600px" 
+                frameborder="0" 
+                allowfullscreen>
+            </iframe>
+        </section>
+    
+    </main>
+    
+    <script src="src/scripts/script.js"></script>
+
+    <script>
+        function showExecutivesView() {
+            document.getElementById('ura').style.display = 'none';
+            document.getElementById('chat-executive').style.display = 'block';
+            document.getElementById('chat-merchant').style.display = 'none';
+            
+        }
+
+        function showClientsView() {
+            document.getElementById('ura').style.display = 'block';
+            document.getElementById('chat-executive').style.display = 'none';
+            document.getElementById('chat-merchant').style.display = 'block';
+        }
+
+        // Initialize with Executives view
+        document.addEventListener('DOMContentLoaded', function() {
+            showExecutivesView();
+        });
+    </script>
+</body>
+</html>
